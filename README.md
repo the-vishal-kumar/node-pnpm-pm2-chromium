@@ -115,15 +115,34 @@ docker buildx build \
 ## 📩 Maintainer
 
 **Vishal Kumar**  
-🥇 [AWS Certified Solutions Architect – Professional](https://www.credly.com/badges/27547b76-b136-459f-ab2f-a34cbe43301e)
+🥇 [AWS Certified Solutions Architect – Professional](https://www.credly.com/badges/27547b76-b136-459f-ab2f-a34cbe43301e)  
+🥈 [AWS Certified Solutions Architect – Associate](https://www.credly.com/badges/5c93bb5e-d403-4077-a199-ca4f2bc55dfb)  
+📍 Gurugram, India
 
 🌐 Portfolio: [thevishalkumar.com](https://thevishalkumar.com)  
 ✍️ Blog: [fungyaan.com](https://fungyaan.com)  
+📄 Résumé: [one page](https://thevishalkumar.com/Vishal_Kumar_Resume.pdf) · [detailed](https://thevishalkumar.com/Vishal_Kumar_Resume_Detailed.pdf)  
 📧 [vishal194kumar@gmail.com](mailto:vishal194kumar@gmail.com)  
 🐙 GitHub: [@the-vishal-kumar](https://github.com/the-vishal-kumar)  
 💼 LinkedIn: [@the-vishal-kumar](https://linkedin.com/in/the-vishal-kumar)  
 🐦 X: [@the_vishalkr](https://x.com/the_vishalkr)  
 📸 Instagram: [@the_vishal_kumar](https://instagram.com/the_vishal_kumar)
+
+### 🧰 More open-source work
+
+Small, finished and tested versions of patterns from production work:
+
+- [engineering-standards](https://github.com/the-vishal-kumar/engineering-standards): a CI quality gate, PR, ADR and postmortem templates, release readiness, on-call and DR runbooks
+- [multi-tenant-event-driven-ref](https://github.com/the-vishal-kumar/multi-tenant-event-driven-ref): multi-tenant order processing with Postgres row-level security, an outbox to SQS and a Go worker with a dead-letter queue
+- [llm-document-ingestion](https://github.com/the-vishal-kumar/llm-document-ingestion): purchase orders from email, CSV, Excel, PDF and images to schema-validated JSON, with per-field confidence and a review queue
+- [Same API, three stacks](https://github.com/the-vishal-kumar/nodejs-typescript-rest-boilerplate/blob/main/docs/comparison.md): one API in Express + MongoDB, Fastify + PostgreSQL and Go + PostgreSQL, measured against the same conformance suite
+- [latency-debugging-lab](https://github.com/the-vishal-kumar/latency-debugging-lab): five common causes of a slow API, the trace signature of each, and what each scaling technique buys
+- [systems-data-structures](https://github.com/the-vishal-kumar/systems-data-structures): the data structures inside caches, queues and databases, each measured on the property that matters
+- [ev-charging-federated-graphql](https://github.com/the-vishal-kumar/ev-charging-federated-graphql): an Apollo Federation 2 gateway and subgraph for EV charging stations with relay-style pagination
+- [tech-strategy-onepager](https://github.com/the-vishal-kumar/tech-strategy-onepager): a one-page technology strategy template with a worked example
+- [database-tradeoffs-lab](https://github.com/the-vishal-kumar/database-tradeoffs-lab): PostgreSQL isolation levels, demonstrated and measured
+- [claude-local-api](https://github.com/the-vishal-kumar/claude-local-api): a small Go HTTP service that runs Claude tasks in a local working directory
+- [fastify-rate-limit#119](https://github.com/fastify/fastify-rate-limit/pull/119): merged contribution, custom store examples for Sequelize and Knex
 
 [![GitHub followers](https://img.shields.io/github/followers/the-vishal-kumar?label=Follow&style=social)](https://github.com/the-vishal-kumar)  
 [![LinkedIn](https://img.shields.io/static/v1.svg?label=LinkedIn&message=Connect&logo=linkedin&style=flat&color=0A66C2)](https://linkedin.com/in/the-vishal-kumar)  
