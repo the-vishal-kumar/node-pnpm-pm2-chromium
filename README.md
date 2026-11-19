@@ -116,8 +116,7 @@ docker buildx build \
 
 **Vishal Kumar**  
 🥇 [AWS Certified Solutions Architect – Professional](https://www.credly.com/badges/27547b76-b136-459f-ab2f-a34cbe43301e)  
-🥈 [AWS Certified Solutions Architect – Associate](https://www.credly.com/badges/5c93bb5e-d403-4077-a199-ca4f2bc55dfb)  
-📍 Gurugram, India
+🥈 [AWS Certified Solutions Architect – Associate](https://www.credly.com/badges/5c93bb5e-d403-4077-a199-ca4f2bc55dfb)
 
 🌐 Portfolio: [thevishalkumar.com](https://thevishalkumar.com)  
 ✍️ Blog: [fungyaan.com](https://fungyaan.com)  
