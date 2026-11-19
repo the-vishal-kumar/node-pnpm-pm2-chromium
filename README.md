@@ -67,7 +67,7 @@ See the [`Dockerfile`](./Dockerfile). In short: `node:26-alpine`, then `apk add`
 | Tag | Moves? | Description |
 | --- | --- | --- |
 | `latest`, `26`, `26-chromium` | Yes, every build | Newest build of Node 26 + pnpm + pm2 + Chromium |
-| `22`, `22-chromium`, `22.23.5-pnpm12.21.0` | No | Last Node 22 builds; the image name keeps `node22` so existing `FROM` lines keep working |
+| `22`, `22-chromium`, `22.23.5-pnpm12.21.0` | No, end of life | Last Node 22 builds. They are no longer rebuilt, so they get no security patches; move to `latest` or `26`. The image name keeps `node22` so existing `FROM` lines keep working |
 | `<node>-pnpm<pnpm>` e.g. `26.13.1-pnpm12.21.0` | Only on rebuilds of the same versions | Pin the exact Node and pnpm versions |
 | `<node>-pnpm<pnpm>-<YYYYMMDD>` e.g. `26.13.1-pnpm12.21.0-20261119` | No | Immutable snapshot of one build; use this for reproducible deploys |
 | `v*` (git tag name) | No | Published when a `v*` git tag is pushed |
