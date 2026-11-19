@@ -79,7 +79,7 @@ jobs:
           format: table
 
       # 3. Derive versioned tags from what is actually inside the image, e.g.
-      #    22.23.4-pnpm12.6.0 and 22.23.4-pnpm12.6.0-20261110.
+      #    22.23.4-pnpm12.21.0 and 22.23.4-pnpm12.21.0-20261119.
       - name: Compute tags
         id: meta
         run: |

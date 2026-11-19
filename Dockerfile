@@ -7,14 +7,14 @@ LABEL maintainer="Vishal Kumar <vishal194kumar@gmail.com>"
 LABEL base.image="node:22-alpine"
 
 # Pinned, not "latest": a consuming project's package.json usually pins its
-# own packageManager version (e.g. pnpm@12.6.0). If this image activates a
+# own packageManager version (e.g. pnpm@12.21.0). If this image activates a
 # different version, Corepack detects the mismatch and re-downloads the
 # pinned version from the npm registry on every single build with no cache
 # layer for it -- one registry hiccup fails the whole build. Baking in the
 # same version here means Corepack never needs the network at consumption
 # time. Override with --build-arg PNPM_VERSION=x.y.z for a project pinning
 # a different version.
-ARG PNPM_VERSION=12.6.0
+ARG PNPM_VERSION=12.21.0
 
 # Keep Corepack's cache outside /root/.cache. The cleanup step below wipes
 # /root/.cache, and with the default location it also deleted the activated

@@ -16,7 +16,7 @@
 
 - ✅ Node.js `v22` (Alpine)
 - ✅ `bash`, `curl`, and Chromium dependencies
-- ✅ `corepack` enabled with a **pinned** `pnpm` (default `12.6.0`, override with `--build-arg PNPM_VERSION=…`), pre-fetched at build time so the first `pnpm` call needs no network
+- ✅ `corepack` enabled with a **pinned** `pnpm` (default `12.21.0`, override with `--build-arg PNPM_VERSION=…`), pre-fetched at build time so the first `pnpm` call needs no network
 - ✅ Global `pm2`
 - ✅ Headless `Chromium` pre-installed (for Puppeteer, scraping, PDF, etc.)
 - ✅ Cleaned and slimmed image layers
@@ -67,8 +67,8 @@ See the [`Dockerfile`](./Dockerfile). In short: `node:22-alpine`, then `apk add`
 | Tag | Moves? | Description |
 | --- | --- | --- |
 | `latest`, `22`, `22-chromium` | Yes, every build | Newest build of Node 22 + pnpm + pm2 + Chromium |
-| `<node>-pnpm<pnpm>` e.g. `22.23.4-pnpm12.6.0` | Only on rebuilds of the same versions | Pin the exact Node and pnpm versions |
-| `<node>-pnpm<pnpm>-<YYYYMMDD>` e.g. `22.23.4-pnpm12.6.0-20261110` | No | Immutable snapshot of one build; use this for reproducible deploys |
+| `<node>-pnpm<pnpm>` e.g. `22.23.4-pnpm12.21.0` | Only on rebuilds of the same versions | Pin the exact Node and pnpm versions |
+| `<node>-pnpm<pnpm>-<YYYYMMDD>` e.g. `22.23.4-pnpm12.21.0-20261119` | No | Immutable snapshot of one build; use this for reproducible deploys |
 | `v*` (git tag name) | No | Published when a `v*` git tag is pushed |
 
 Every tag is a multi-arch manifest: Docker picks `amd64` or `arm64` for you.
