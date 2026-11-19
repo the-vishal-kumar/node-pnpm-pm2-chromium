@@ -1,7 +1,10 @@
-FROM node:22-alpine
+# No --platform=$BUILDPLATFORM here: this is the final (and only) stage, so it
+# must use the *target* platform's base image. Pinning it to the build
+# platform made the published linux/arm64 variant contain x86-64 binaries.
+FROM node:26-alpine
 
-LABEL maintainer="Vishal Kumar <vishal194kumar@gmail.com"
-LABEL base.image="node:22-alpine"
+LABEL maintainer="Vishal Kumar <vishal194kumar@gmail.com>"
+LABEL base.image="node:26-alpine"
 
 # Pinned, not "latest": a consuming project's package.json usually pins its
 # own packageManager version (e.g. pnpm@12.21.0). If this image activates a
@@ -13,11 +16,17 @@ LABEL base.image="node:22-alpine"
 # a different version.
 ARG PNPM_VERSION=12.21.0
 
-# Corepack keeps the prepared pnpm, and the native binary pnpm fetches on its
-# first run (the `pnpm --version` below), here, outside /root/.cache, which the
-# install step removes. Inside /root/.cache every container start and every
-# consuming build would download pnpm again.
+# Keep Corepack's cache outside /root/.cache. The cleanup step below wipes
+# /root/.cache, and with the default location it also deleted the activated
+# pnpm, so every container silently downloaded the newest pnpm on first use.
+# This path survives cleanup and is readable by non-root users (e.g. `node`).
+# Running `pnpm --version` once at build time also fetches pnpm's native
+# binary into the same place, so the first real `pnpm` call needs no network.
 ENV COREPACK_HOME=/usr/local/share/corepack
+
+# Node 25 and later ship without Corepack, so it is installed from npm,
+# pinned like pnpm.
+ARG COREPACK_VERSION=0.36.0
 
 # Install essential tools and Chromium (minimal dependencies)
 RUN apk add --no-cache \
@@ -29,9 +38,11 @@ RUN apk add --no-cache \
       harfbuzz \
       ca-certificates \
       ttf-freefont && \
+    npm install -g corepack@${COREPACK_VERSION} && \
     corepack enable && \
     corepack prepare pnpm@${PNPM_VERSION} --activate && \
     pnpm --version && \
+    chmod -R a+rX "$COREPACK_HOME" && \
     npm install -g pm2 && \
     rm -rf /root/.npm /root/.cache /var/cache/apk/* /usr/share/man /tmp/*
 
