@@ -1,11 +1,11 @@
 # 🐳 Node 26 LTS + pnpm + pm2 + Chromium (Alpine) – Multi-Arch, Slim Docker Base Image
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/thevishalkumar/node22-pnpm-pm2-chromium.svg)](https://hub.docker.com/r/thevishalkumar/node22-pnpm-pm2-chromium)
-[![Image Size](https://img.shields.io/docker/image-size/thevishalkumar/node22-pnpm-pm2-chromium/latest)](https://hub.docker.com/r/thevishalkumar/node22-pnpm-pm2-chromium)
-[![Publish](https://github.com/the-vishal-kumar/node22-pnpm-pm2-chromium/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/the-vishal-kumar/node22-pnpm-pm2-chromium/actions/workflows/docker-publish.yml)
+[![Docker Pulls](https://img.shields.io/docker/pulls/thevishalkumar/node-pnpm-pm2-chromium.svg)](https://hub.docker.com/r/thevishalkumar/node-pnpm-pm2-chromium)
+[![Image Size](https://img.shields.io/docker/image-size/thevishalkumar/node-pnpm-pm2-chromium/latest)](https://hub.docker.com/r/thevishalkumar/node-pnpm-pm2-chromium)
+[![Publish](https://github.com/the-vishal-kumar/node-pnpm-pm2-chromium/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/the-vishal-kumar/node-pnpm-pm2-chromium/actions/workflows/docker-publish.yml)
 [![Trivy: no fixable CRITICAL](https://img.shields.io/badge/Trivy-no%20fixable%20CRITICAL-brightgreen?logo=aquasecurity)](#-supply-chain-hygiene)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
-[![GitHub Repo](https://img.shields.io/badge/GitHub-View%20Source-black?logo=github)](https://github.com/the-vishal-kumar/node22-pnpm-pm2-chromium)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-View%20Source-black?logo=github)](https://github.com/the-vishal-kumar/node-pnpm-pm2-chromium)
 
 > Minimal, multi-platform (amd64 + arm64) and production-ready Docker base image built on top of `node:26-alpine` (Node 26 LTS), with `pnpm` (via Corepack), `pm2`, and headless `Chromium` preinstalled.  
 > Ideal for full-stack Node.js apps, Puppeteer automation, PDF generation, SSR pipelines, and background workers.
@@ -41,7 +41,7 @@ Perfect base image if your app:
 ## 📦 Example Usage
 
 ```Dockerfile
-FROM thevishalkumar/node22-pnpm-pm2-chromium:latest
+FROM thevishalkumar/node-pnpm-pm2-chromium:latest
 
 WORKDIR /app
 
@@ -67,12 +67,14 @@ See the [`Dockerfile`](./Dockerfile). In short: `node:26-alpine`, then `apk add`
 | Tag | Moves? | Description |
 | --- | --- | --- |
 | `latest`, `26`, `26-chromium` | Yes, every build | Newest build of Node 26 + pnpm + pm2 + Chromium |
-| `22`, `22-chromium`, `22.23.5-pnpm12.21.0` | No, end of life | Last Node 22 builds. They are no longer rebuilt, so they get no security patches; move to `latest` or `26`. The image name keeps `node22` so existing `FROM` lines keep working |
+| `22`, `22-chromium`, `22.23.5-pnpm12.21.0` | No, end of life | Last Node 22 builds, published only under the earlier name `thevishalkumar/node22-pnpm-pm2-chromium`. They are no longer rebuilt, so they get no security patches; move to `latest` or `26` |
 | `<node>-pnpm<pnpm>` e.g. `26.13.1-pnpm12.21.0` | Only on rebuilds of the same versions | Pin the exact Node and pnpm versions |
 | `<node>-pnpm<pnpm>-<YYYYMMDD>` e.g. `26.13.1-pnpm12.21.0-20261119` | No | Immutable snapshot of one build; use this for reproducible deploys |
 | `v*` (git tag name) | No | Published when a `v*` git tag is pushed |
 
 Every tag is a multi-arch manifest: Docker picks `amd64` or `arm64` for you.
+
+> **Earlier name.** CI also publishes every tag under `thevishalkumar/node22-pnpm-pm2-chromium`, so existing `FROM` lines keep building. Switch them to `thevishalkumar/node-pnpm-pm2-chromium`.
 
 > **Runs as root by default.** Like the official `node` images, this base image doesn't switch user, so your Dockerfile should: add `USER node` after copying your app (and run Chromium without `--no-sandbox` once you do).
 
@@ -100,9 +102,9 @@ To build and publish the image for both `amd64` and `arm64` (Apple M1, Graviton,
 ```bash
 docker buildx build \
   --platform linux/amd64,linux/arm64 \
-  -t thevishalkumar/node22-pnpm-pm2-chromium:latest \
-  -t thevishalkumar/node22-pnpm-pm2-chromium:26 \
-  -t thevishalkumar/node22-pnpm-pm2-chromium:26-chromium \
+  -t thevishalkumar/node-pnpm-pm2-chromium:latest \
+  -t thevishalkumar/node-pnpm-pm2-chromium:26 \
+  -t thevishalkumar/node-pnpm-pm2-chromium:26-chromium \
   --push .
 ```
 
@@ -140,6 +142,6 @@ docker buildx build \
 
 ## 🤝 Contributions
 
-### 📁 GitHub Repository 🔗 https://github.com/the-vishal-kumar/node22-pnpm-pm2-chromium
+### 📁 GitHub Repository 🔗 https://github.com/the-vishal-kumar/node-pnpm-pm2-chromium
 
 Feel free to open issues or PRs if you'd like to suggest improvements or add new versions!

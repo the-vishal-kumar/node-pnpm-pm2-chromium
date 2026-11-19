@@ -21,7 +21,9 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  IMAGE: thevishalkumar/node22-pnpm-pm2-chromium
+  IMAGE: thevishalkumar/node-pnpm-pm2-chromium
+  # The earlier name gets the same tags, so existing FROM lines keep building.
+  LEGACY_IMAGE: thevishalkumar/node22-pnpm-pm2-chromium
   PLATFORMS: linux/amd64,linux/arm64
   # Scheduled runs rebuild from scratch so `apk add` re-resolves to the
   # latest patched packages instead of reusing a cached layer.
@@ -93,14 +95,16 @@ jobs:
             echo "pnpm=$pnpm_v"
             echo "chromium=$chromium_v"
             echo "tags<<EOF"
-            echo "$IMAGE:latest"
-            echo "$IMAGE:${node_v%%.*}"
-            echo "$IMAGE:${node_v%%.*}-chromium"
-            echo "$IMAGE:${node_v}-pnpm${pnpm_v}"
-            echo "$IMAGE:${node_v}-pnpm${pnpm_v}-${date_tag}"
-            if [ "$GITHUB_REF_TYPE" = "tag" ]; then
-              echo "$IMAGE:${GITHUB_REF_NAME}"
-            fi
+            for name in "$IMAGE" "$LEGACY_IMAGE"; do
+              echo "$name:latest"
+              echo "$name:${node_v%%.*}"
+              echo "$name:${node_v%%.*}-chromium"
+              echo "$name:${node_v}-pnpm${pnpm_v}"
+              echo "$name:${node_v}-pnpm${pnpm_v}-${date_tag}"
+              if [ "$GITHUB_REF_TYPE" = "tag" ]; then
+                echo "$name:${GITHUB_REF_NAME}"
+              fi
+            done
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
 

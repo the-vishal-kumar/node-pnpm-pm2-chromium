@@ -1,6 +1,6 @@
 # 🔄 Updating the Docker Image Repository
 
-This repository contains the Docker configuration for the `thevishalkumar/node22-pnpm-pm2-chromium` image.
+This repository contains the Docker configuration for the `thevishalkumar/node-pnpm-pm2-chromium` image.
 
 If you make changes to the `Dockerfile`, update dependencies, or modify supporting files, follow the steps below to ensure the new image is built, tagged, and pushed properly.
 
@@ -8,7 +8,7 @@ If you make changes to the `Dockerfile`, update dependencies, or modify supporti
 
 ## 🛠 What You Can Modify
 
-- Update Node.js version (e.g., `node:22-alpine`)
+- Update Node.js version (e.g., `node:26-alpine`)
 - Change or upgrade base dependencies (e.g., Chromium, pnpm, pm2)
 - Modify environment variables or install flags
 - Add support scripts (e.g., test, healthcheck)
@@ -26,21 +26,21 @@ If you make changes to the `Dockerfile`, update dependencies, or modify supporti
 
 2. **Build the updated image**
     ```bash
-    docker build -t node22-pnpm-pm2-chromium .
+    docker build -t node-pnpm-pm2-chromium .
     ```
 
 3. **Tag the image**
     ```bash
-    docker tag node22-pnpm-pm2-chromium thevishalkumar/node22-pnpm-pm2-chromium:latest
-    docker tag node22-pnpm-pm2-chromium thevishalkumar/node22-pnpm-pm2-chromium:22
-    docker tag node22-pnpm-pm2-chromium thevishalkumar/node22-pnpm-pm2-chromium:22-chromium
+    docker tag node-pnpm-pm2-chromium thevishalkumar/node-pnpm-pm2-chromium:latest
+    docker tag node-pnpm-pm2-chromium thevishalkumar/node-pnpm-pm2-chromium:26
+    docker tag node-pnpm-pm2-chromium thevishalkumar/node-pnpm-pm2-chromium:26-chromium
     ```
 
 4. **Push the tags**
     ```bash
-    docker push thevishalkumar/node22-pnpm-pm2-chromium:latest
-    docker push thevishalkumar/node22-pnpm-pm2-chromium:22
-    docker push thevishalkumar/node22-pnpm-pm2-chromium:22-chromium
+    docker push thevishalkumar/node-pnpm-pm2-chromium:latest
+    docker push thevishalkumar/node-pnpm-pm2-chromium:26
+    docker push thevishalkumar/node-pnpm-pm2-chromium:26-chromium
     ```
 
 ---
