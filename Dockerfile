@@ -1,10 +1,10 @@
 # No --platform=$BUILDPLATFORM here: this is the final (and only) stage, so it
 # must use the *target* platform's base image. Pinning it to the build
 # platform made the published linux/arm64 variant contain x86-64 binaries.
-FROM node:22-alpine
+FROM node:26-alpine
 
 LABEL maintainer="Vishal Kumar <vishal194kumar@gmail.com>"
-LABEL base.image="node:22-alpine"
+LABEL base.image="node:26-alpine"
 
 # Pinned, not "latest": a consuming project's package.json usually pins its
 # own packageManager version (e.g. pnpm@12.21.0). If this image activates a
@@ -24,6 +24,10 @@ ARG PNPM_VERSION=12.21.0
 # binary into the same place, so the first real `pnpm` call needs no network.
 ENV COREPACK_HOME=/usr/local/share/corepack
 
+# Node 25 and later ship without Corepack, so it is installed from npm,
+# pinned like pnpm.
+ARG COREPACK_VERSION=0.36.0
+
 # Install essential tools and Chromium (minimal dependencies)
 RUN apk add --no-cache \
       bash \
@@ -34,6 +38,7 @@ RUN apk add --no-cache \
       harfbuzz \
       ca-certificates \
       ttf-freefont && \
+    npm install -g corepack@${COREPACK_VERSION} && \
     corepack enable && \
     corepack prepare pnpm@${PNPM_VERSION} --activate && \
     pnpm --version && \
